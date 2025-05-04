@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlixControlling - Inventario de Telas</title>
+    <link rel="stylesheet" href="estilos.css"> </head>
+<body>
+    <div class="titulo">
+        <h1>Inventario de Telas - AlixControlling</h1>
+        <div class="logo-container">
+                <img src="log-AlixC.jpg" alt="logo-de-la-empresa" class="log">
+                <div class="text-container">
+                <span class="empresa">Du-artes SAS</span>
+                <span class="sucursal">Almacén Metro-Telas</span>
+        </div>
+    </div>
+    </div>
+
+    <form id="telaForm" action="#" method="post">
+        <label for="tipoTela">Tipo de Tela:</label>
+        <input type="text" id="tipoTela" name="tipoTela" required>
+
+        <label for="metros">Metros:</label>
+        <input type="number" id="metros" name="metros" min="0" step="0.01" required>
+
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" rows="4"></textarea>
+
+        <label for="proveedor">Proveedor:</label>
+        <input type="text" id="proveedor" name="proveedor">
+
+        <label for="ubicacion">Ubicación:</label>
+        <input type="text" id="ubicacion" name="ubicacion" required>
+
+        <label for="precioCosto">Precio de Costo:</label>
+        <input type="number" id="precioCosto" name="precioCosto" min="0" step="0.01">
+
+        <label for="precioVenta">Precio de Venta:</label>
+        <input type="number" id="precioVenta" name="precioVenta" min="0" step="0.01" required>
+
+        <button type="submit">Guardar Tela</button>
+        <div id="error-message" class="error-message"></div>
+    </form>
+
+    <script>
+        document.getElementById('telaForm').addEventListener('submit', function(event) {
+            const tipoTela = document.getElementById('tipoTela').value;
+            const metros = document.getElementById('metros').value;
+            const ubicacion = document.getElementById('ubicacion').value;
+            const precioVenta = document.getElementById('precioVenta').value;
+            const errorMessage = document.getElementById('error-message');
+            errorMessage.textContent = '';
+
+            if (!tipoTela) {
+                errorMessage.textContent += 'El tipo de tela es obligatorio. ';
+            }
+            if (!metros || metros < 0) {
+                errorMessage.textContent += 'Los metros deben ser un número mayor o igual a 0. ';
+            }
+             if (!ubicacion) {
+                errorMessage.textContent += 'La ubicación es obligatoria. ';
+            }
+            if (!precioVenta || precioVenta < 0) {
+                errorMessage.textContent += 'El precio de venta debe ser un número mayor o igual a 0. ';
+            }
+
+            if (errorMessage.textContent !== '') {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
